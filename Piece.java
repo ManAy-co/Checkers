@@ -14,21 +14,18 @@ public class Piece {
         this.color = color;
         king = false;
     }
-    
-    void promote()
+
+    public void promote()
     {
-        if( ! king )
-        {
-                king = true;
-        }
+        king = true;
     }
 
-    boolean isking()
+    public boolean isKing()
     {
         return king;
     }
 
-    PieceColor getColor()
+    public PieceColor getColor()
     {
         return color;
     }
