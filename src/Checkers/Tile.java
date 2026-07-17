@@ -1,10 +1,18 @@
+/*This class declears posibilities of Tiles' color(Which is imported in Board.java class),
+coordinate position(row and column),
+and their status whether they include a piece or not.*/
+
 package Checkers;
+import Piece.*;
 
 public class Tile {
-
+    //fields(attributes):
     private final Color color;
     private final Position position;
     private Status status;
+    private Piece piece;
+
+    //fields' declearing(enums and methods):
 
     public enum Color {
         LIGHT,
@@ -15,7 +23,7 @@ public class Tile {
         private final int row;
         private final int col;
 
-        //getter methodes:
+        //Position's getter methods:
         public int getRow() {
             return row;
         }
@@ -23,7 +31,7 @@ public class Tile {
             return col;
         }
         
-
+        //Position's constructor:
         public Position(int row , int col) {
             this.col = col;
             this.row = row;
@@ -55,5 +63,12 @@ public class Tile {
         this.color = color;
         this.position = position;
         this.status = status;
+    }
+
+    public Piece getPiece() {
+        return  piece;
+    }
+    public void setPiece(Piece piece) {
+        this.piece = piece;
     }
 }
