@@ -117,6 +117,44 @@ public class Board {
 
     if(Math.abs(colDistance) != 1)
         return false;
+    return true;
+    }
+
+    public boolean isValidJump(int fromRow, int fromCol, int toRow, int toCol) {
+        if(!isValidPosition(fromRow, fromCol))
+            return false;
+        if(!isValidPosition(toRow, toCol))
+            return false;
+
+        Piece piece = getPiece(fromRow, fromCol);
+
+        if(piece == null)
+            return false;
+
+        if(!isEmpty(toRow, toCol))
+            return false;
+
+        if(getTile(toRow, toCol).getColor() != Tile.Color.DARK)
+            return false;
+
+        int rowDistance = toRow - fromRow;
+        int colDistance = toCol - fromCol;
+
+        if(!piece.isKing()) {
+            if(piece.getColor() == PieceColor.RED) {
+                if(rowDistance != 2)
+                return false;
+        } else {
+            if(rowDistance != -2)
+                return false;
+        }
+    } else {
+        if(Math.abs(rowDistance) != 2)
+            return false;
+    }
+
+    if(Math.abs(colDistance) != 2)
+        return false;
 
     int middleRow = (fromRow + toRow) / 2;
     int middleCol = (fromCol + toCol) / 2;
@@ -142,14 +180,16 @@ public class Board {
     if(isValidMove(fromRow, fromCol, toRow, toCol)) {
         removePiece(fromRow, fromCol);
         placePiece(toRow, toCol, piece);
-        }
+    }
+
     else if(isValidJump(fromRow, fromCol, toRow, toCol)) {
         int middleRow = (fromRow + toRow) / 2;
         int middleCol = (fromCol + toCol) / 2;
         removePiece(fromRow, fromCol);
         removePiece(middleRow, middleCol);
         placePiece(toRow, toCol, piece);
-        }
+    }
+
     else
         return false;
 
@@ -162,5 +202,74 @@ public class Board {
         piece.promote();
 
     return true;
+    }
+
+    public boolean canJumpAgain(int row, int col) {
+
+    if(getPiece(row, col) == null)
+    return false;
+
+    if(isValidJump(row, col, row + 2, col + 2))
+        return true;
+
+    if(isValidJump(row, col, row + 2, col - 2))
+        return true;
+
+    if(isValidJump(row, col, row - 2, col + 2))
+        return true;
+
+    if(isValidJump(row, col, row - 2, col - 2))
+        return true;
+
+    return false;
+    }
+
+    public boolean hasCapture(PieceColor color) {
+    for(int row = 0 ; row < 8 ; row++) {
+        for(int col = 0 ; col < 8 ; col++) {
+            Piece piece = getPiece(row, col);
+
+            if(piece == null)
+                continue;
+
+            if(piece.getColor() != color)
+                continue;
+
+            if(canJumpAgain(row, col))
+                return true;
+        }
+    }
+    return false;
+    }
+
+    public boolean hasAnyMove(PieceColor color) {
+    for(int row = 0 ; row < 8 ; row++) {
+        for(int col = 0 ; col < 8 ; col++) {
+
+            Piece piece = getPiece(row, col);
+
+            if(piece == null)
+                continue;
+
+            if(piece.getColor() != color)
+                continue;
+
+            if(canJumpAgain(row, col))
+                return true;
+
+            if(isValidMove(row, col, row + 1, col + 1))
+                return true;
+
+            if(isValidMove(row, col, row + 1, col - 1))
+                return true;
+
+            if(isValidMove(row, col, row - 1, col + 1))
+                return true;
+
+            if(isValidMove(row, col, row - 1, col - 1))
+                return true;
+        }
+    }
+    return false;
     }
 }
