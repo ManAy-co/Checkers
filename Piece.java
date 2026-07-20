@@ -1,7 +1,7 @@
-package Chackers;
+package Checkers;
 
 public class Piece {
-    enum PieceColor 
+    public enum PieceColor 
     {
         BLUE,
         RED 
