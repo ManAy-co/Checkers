@@ -2,11 +2,13 @@ package Checkers;
 
 import Checkers.Piece.PieceColor;
 
+// Represents a player in the game
 public class Player {
     private String id;
     private PieceColor color;
     private int remainingPieces;
 
+    // Constructor initializing player details and starting piece count
     public Player( String id , PieceColor color )
     {
         this.id = id;
@@ -29,6 +31,7 @@ public class Player {
         return remainingPieces;
     }
 
+    // Reduces the player's remaining piece count when captured
     public void losePiece()
     {
         if ( remainingPieces > 0 )
@@ -36,6 +39,8 @@ public class Player {
             remainingPieces--;
         }
     }
+
+    // Checks if the player has lost all pieces
     public boolean hasLost()
     {
          return remainingPieces == 0;
