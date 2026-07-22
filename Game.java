@@ -1,5 +1,6 @@
 package Checkers;
 import Checkers.Piece.PieceColor;
+import Checkers.UndoManager;
 
 // Manages the overall game state and logic
 public class Game {
@@ -8,6 +9,7 @@ public class Game {
     private boolean gameOver;
     private Board board;
     private Player winner;
+    private UndoManager undoManager = new UndoManager();
 
     // Initializes a new game session
     public Game()
@@ -93,6 +95,8 @@ public class Game {
                 return false;
             }
 
+        undoManager.saveState(board, currentPlayer, players[0], players[1]);
+
         if (!board.movePiece(fromRow, fromCol, toRow, toCol)) 
             {
                 return false;
@@ -111,7 +115,6 @@ public class Game {
                         return true;
                     }
             }
-
         switchTurn();
         checkGameOver();
         return true;
@@ -122,5 +125,20 @@ public class Game {
        {
         this.gameOver = false;
         this.currentPlayer = players[0];
+        this.undoManager.clearHistory();
        }
+    // Restores previous game state properties for Undo
+    public void restoreState(Player currentPlayer, int p1Pieces, int p2Pieces) 
+    {
+        this.currentPlayer = currentPlayer;
+        this.players[0].setRemainingPieces(p1Pieces);
+        this.players[1].setRemainingPieces(p2Pieces);
+        this.gameOver = false;
+        this.winner = null;
+    }
+    // Triggers undo action
+    public boolean undoLastMove() 
+    {
+        return undoManager.undo(this);
+    }
 }

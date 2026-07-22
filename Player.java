@@ -45,4 +45,8 @@ public class Player {
     {
          return remainingPieces == 0;
     }
+    public void setRemainingPieces(int remainingPieces) 
+    {
+        this.remainingPieces = remainingPieces;
+    }
 }
