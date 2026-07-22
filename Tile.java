@@ -69,10 +69,10 @@ public class Tile {
     }
 
     public void setPiece(Piece piece) {
-    this.piece = piece;
-    if(piece == null)
-        status = Status.EMPTY;
-    else
-        status = Status.OCCUPIED;
+        this.piece = piece;
+        if(piece == null)
+            status = Status.EMPTY;
+        else
+            status = Status.OCCUPIED;
     }
 }

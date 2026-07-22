@@ -36,10 +36,10 @@ public class Board {
                     placePiece(i , j , new Piece(PieceColor.RED));
         }
     }
-    for(int i = 5 ; i < 8 ; i++) {
-        for(int j = 0 ; j < 8 ; j++) {
-            if(BOARD[i][j].getColor() == Color.DARK)
-                placePiece(i, j, new Piece(PieceColor.BLUE));
+        for(int i = 5 ; i < 8 ; i++) {
+            for(int j = 0 ; j < 8 ; j++) {
+                if(BOARD[i][j].getColor() == Color.DARK)
+                    placePiece(i, j, new Piece(PieceColor.BLUE));
         }
     }
 }
