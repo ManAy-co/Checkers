@@ -8,10 +8,10 @@ import Checkers.Tile.Color;
 
 public class Board {
     //declearing size of board(unchangable)
-    private final Tile[][] BOARD;
+    private final Tile[][] board;
     //constructor
     public Board() {
-        BOARD = new Tile[8][8];
+        board = new Tile[8][8];
         initializeBoard();
         initializePieces();
     }
@@ -24,7 +24,7 @@ public class Board {
                 color = Color.DARK;
             else
                 color = Color.LIGHT;
-            BOARD[i][j] = new Tile(color, new Tile.Position(i , j), Tile.Status.EMPTY);
+            board[i][j] = new Tile(color, new Tile.Position(i , j), Tile.Status.EMPTY);
             }
         }
     }
@@ -32,13 +32,13 @@ public class Board {
     private void initializePieces() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0 ; j < 8 ; j++) {
-                if (BOARD[i][j].getColor() == Color.DARK)
+                if (board[i][j].getColor() == Color.DARK)
                     placePiece(i , j , new Piece(PieceColor.RED));
         }
     }
         for(int i = 5 ; i < 8 ; i++) {
             for(int j = 0 ; j < 8 ; j++) {
-                if(BOARD[i][j].getColor() == Color.DARK)
+                if(board[i][j].getColor() == Color.DARK)
                     placePiece(i, j, new Piece(PieceColor.BLUE));
         }
     }
@@ -51,7 +51,7 @@ public class Board {
     //tile getter
     public Tile getTile(int row, int col) {
         if(isValidPosition(row, col))
-        return BOARD[row][col];
+        return board[row][col];
     return null;
     }
     //Places a piece on a tile and changes the tile's status
@@ -59,16 +59,16 @@ public class Board {
         if (!isValidPosition(row, col))
             return;
 
-        BOARD[row][col].setPiece(piece);
-        BOARD[row][col].setStatus(Tile.Status.OCCUPIED);
+        board[row][col].setPiece(piece);
+        board[row][col].setStatus(Tile.Status.OCCUPIED);
     }
     //removes a piece from the board and changes the tile's status
     public void removePiece(int row, int col) {
         if (!isValidPosition(row, col))
             return;
 
-        BOARD[row][col].setPiece(null);
-        BOARD[row][col].setStatus(Tile.Status.EMPTY);
+        board[row][col].setPiece(null);
+        board[row][col].setStatus(Tile.Status.EMPTY);
     }
 
     public boolean isEmpty(int row, int col) {
