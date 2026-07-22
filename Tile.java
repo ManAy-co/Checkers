@@ -3,7 +3,6 @@ coordinate position(row and column),
 and their status whether they include a piece or not.*/
 
 package Checkers;
-import Checkers.Piece.*;
 
 public class Tile {
     //fields(attributes):
@@ -76,8 +75,4 @@ public class Tile {
     else
         status = Status.OCCUPIED;
     }
-<<<<<<< HEAD:src/Checkers/Tile.java
 }
-=======
-}
->>>>>>> add7790a35c110647309e967dd08be64f6e11391:Tile.java
