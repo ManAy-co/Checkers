@@ -3,8 +3,8 @@ and initialize them with pieces(so we import "Piece.java")
 and most of the game's logics for diffrent types of movements. */
 
 package Checkers;
-import Checkers.Tile.*;
-import Checkers.Piece.*;
+import Checkers.Piece.PieceColor;
+import Checkers.Tile.Color;
 
 public class Board {
     //declearing size of board(unchangable)

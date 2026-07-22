@@ -76,4 +76,8 @@ public class Tile {
     else
         status = Status.OCCUPIED;
     }
+<<<<<<< HEAD:src/Checkers/Tile.java
 }
+=======
+}
+>>>>>>> add7790a35c110647309e967dd08be64f6e11391:Tile.java
